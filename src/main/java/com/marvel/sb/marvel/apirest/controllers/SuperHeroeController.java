@@ -3,10 +3,16 @@ package com.marvel.sb.marvel.apirest.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.marvel.sb.marvel.apirest.utils.Response;
 import com.marvel.sb.marvel.apirest.models.entity.SuperHeroe;
 import com.marvel.sb.marvel.apirest.models.services.SuperHeroeService;
 
@@ -18,8 +24,33 @@ public class SuperHeroeController {
 	private SuperHeroeService superHeroeService;
 
 	@GetMapping("/superheroes")
+	@ResponseBody
 	public List<SuperHeroe> index() {
 		return superHeroeService.findAll();
+	}
+	
+	@RequestMapping(value = "/colaborators/{superheroe}", method = RequestMethod.GET, produces = {"application/JSON"})
+	public ResponseEntity<Response<String>> colaborators(@PathVariable String superheroe) {
+		HttpHeaders headers = new HttpHeaders();
+        headers.add("Responded", "colaborators endpoint");
+        
+        Response<String> res = new Response<>();
+        res.setOk(Boolean.TRUE);
+        res.setData("Hola desde mi api rest con spring boot - colaborators");
+        res.setSuperheroe(superheroe);
+        
+        return ResponseEntity.ok().headers(headers).body(res);
+	}
+	
+	@RequestMapping(value = "/characters/{superheroe}", method = RequestMethod.GET, produces = {"application/JSON"})
+	public ResponseEntity<Response<String>> characters(@PathVariable String superheroe) {
+		
+		Response<String> res = new Response<>();
+        res.setOk(Boolean.TRUE);
+        res.setData("Hola desde mi api rest con spring boot - colaborators");
+        res.setSuperheroe(superheroe);
+        
+		return ResponseEntity.ok().body(res);
 	}
 	
 }
