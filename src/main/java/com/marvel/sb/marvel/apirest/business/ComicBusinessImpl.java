@@ -1,16 +1,21 @@
 package com.marvel.sb.marvel.apirest.business;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+@Component
 public class ComicBusinessImpl implements ComicBusiness {
+	
+	@Value("${api.key.public}")
+	private String apiKey;
 
 	@Override
 	public Object getColaborators() {
-		// TODO Auto-generated method stub
-		return null;
+		return apiKey;
 	}
 
 	@Override
 	public Object getCharacters() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

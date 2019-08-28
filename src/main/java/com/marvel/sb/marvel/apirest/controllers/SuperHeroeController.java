@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.marvel.sb.marvel.apirest.utils.Response;
+import com.marvel.sb.marvel.apirest.business.ComicBusiness;
 import com.marvel.sb.marvel.apirest.models.entity.SuperHeroe;
 import com.marvel.sb.marvel.apirest.models.services.SuperHeroeService;
 
@@ -22,6 +23,9 @@ public class SuperHeroeController {
 	
 	@Autowired
 	private SuperHeroeService superHeroeService;
+	
+	@Autowired
+	private ComicBusiness comicBusiness;
 
 	@GetMapping("/superheroes")
 	@ResponseBody
@@ -30,13 +34,13 @@ public class SuperHeroeController {
 	}
 	
 	@RequestMapping(value = "/colaborators/{superheroe}", method = RequestMethod.GET, produces = {"application/JSON"})
-	public ResponseEntity<Response<String>> colaborators(@PathVariable String superheroe) {
+	public ResponseEntity<Response<Object>> colaborators(@PathVariable String superheroe) {
 		HttpHeaders headers = new HttpHeaders();
         headers.add("Responded", "colaborators endpoint");
         
-        Response<String> res = new Response<>();
+        Response<Object> res = new Response<>();
         res.setOk(Boolean.TRUE);
-        res.setData("Hola desde mi api rest con spring boot - colaborators");
+        res.setData(comicBusiness.getColaborators());
         res.setSuperheroe(superheroe);
         
         return ResponseEntity.ok().headers(headers).body(res);
