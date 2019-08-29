@@ -31,8 +31,8 @@ public class SuperHeroeController {
 
 	@GetMapping("/superheroes")
 	@ResponseBody
-	public List<SuperHeroe> index() {
-		return superHeroeService.findAll();
+	public ResponseEntity<List<SuperHeroe>> index() {
+		return ResponseEntity.ok().body(superHeroeService.findAll());
 	}
 	
 	@RequestMapping(value = "/colaborators/{superheroe}", method = RequestMethod.GET, produces = {"application/JSON"})
