@@ -1,7 +1,5 @@
 package com.marvel.sb.marvel.apirest.business;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
 
 import org.springframework.beans.factory.annotation.Value;

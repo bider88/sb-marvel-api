@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import com.marvel.sb.marvel.apirest.business.ComicBusiness;
 import com.marvel.sb.marvel.apirest.models.entity.SuperHeroe;
 import com.marvel.sb.marvel.apirest.models.services.SuperHeroeService;
 
+@CrossOrigin(origins = {"http://test.albo.mx"})
 @RestController
 @RequestMapping("/api")
 public class SuperHeroeController {
