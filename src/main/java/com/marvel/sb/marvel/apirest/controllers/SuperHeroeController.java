@@ -47,11 +47,11 @@ public class SuperHeroeController {
 	}
 	
 	@RequestMapping(value = "/characters/{superheroe}", method = RequestMethod.GET, produces = {"application/JSON"})
-	public ResponseEntity<Response<String>> characters(@PathVariable String superheroe) {
+	public ResponseEntity<Response<Object>> characters(@PathVariable String superheroe) {
 		
-		Response<String> res = new Response<>();
+		Response<Object> res = new Response<>();
         res.setOk(Boolean.TRUE);
-        res.setData("Hola desde mi api rest con spring boot - colaborators");
+        res.setData(comicBusiness.getCharacters());
         res.setSuperheroe(superheroe);
         
 		return ResponseEntity.ok().body(res);
