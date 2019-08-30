@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.marvel.sb.marvel.apirest.utils.Response;
 import com.marvel.sb.marvel.apirest.business.ComicBusiness;
+import com.marvel.sb.marvel.apirest.models.entity.ResponseApi;
 import com.marvel.sb.marvel.apirest.models.entity.SuperHeroe;
 import com.marvel.sb.marvel.apirest.models.services.SuperHeroeService;
 
@@ -49,9 +50,9 @@ public class SuperHeroeController {
 	}
 	
 	@RequestMapping(value = "/characters/{superheroe}", method = RequestMethod.GET, produces = {"application/JSON"})
-	public ResponseEntity<Response<Object>> characters(@PathVariable String superheroe) {
+	public ResponseEntity<Response<ResponseApi>> characters(@PathVariable String superheroe) {
 		
-		Response<Object> res = new Response<>();
+		Response<ResponseApi> res = new Response<>();
         res.setOk(Boolean.TRUE);
         res.setData(comicBusiness.getCharacters());
         res.setSuperheroe(superheroe);

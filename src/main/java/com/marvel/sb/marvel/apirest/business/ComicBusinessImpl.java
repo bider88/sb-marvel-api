@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import com.marvel.sb.marvel.apirest.models.entity.ResponseApi;
 import com.marvel.sb.marvel.apirest.utils.MD5;
 
 @Component
@@ -24,14 +25,14 @@ public class ComicBusinessImpl implements ComicBusiness {
 	public Object getColaborators() {
 		RestTemplate restTemplate = new RestTemplate();
 		String url = buildUrlWithMD5("creators");
-		return restTemplate.getForEntity(url, Object.class).getBody();
+		return restTemplate.getForObject(url, Object.class);
 	}
 
 	@Override
-	public Object getCharacters() {
+	public ResponseApi getCharacters() {
 		RestTemplate restTemplate = new RestTemplate();
 		String url = buildUrlWithMD5("characters");
-		return restTemplate.getForEntity(url, Object.class).getBody();
+		return restTemplate.getForObject(url, ResponseApi.class);
 	}
 	
 	private String buildUrlWithMD5(String type) {
