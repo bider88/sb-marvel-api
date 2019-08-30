@@ -22,10 +22,10 @@ public class ComicBusinessImpl implements ComicBusiness {
 	private String apiUrl;
 
 	@Override
-	public Object getColaborators() {
+	public ResponseApi getColaborators() {
 		RestTemplate restTemplate = new RestTemplate();
 		String url = buildUrlWithMD5("creators");
-		return restTemplate.getForObject(url, Object.class);
+		return restTemplate.getForObject(url, ResponseApi.class);
 	}
 
 	@Override

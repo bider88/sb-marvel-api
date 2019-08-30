@@ -37,11 +37,11 @@ public class SuperHeroeController {
 	}
 	
 	@RequestMapping(value = "/colaborators/{superheroe}", method = RequestMethod.GET, produces = {"application/JSON"})
-	public ResponseEntity<Response<Object>> colaborators(@PathVariable String superheroe) {
+	public ResponseEntity<Response<ResponseApi>> colaborators(@PathVariable String superheroe) {
 		HttpHeaders headers = new HttpHeaders();
         headers.add("Responded", "colaborators endpoint");
         
-        Response<Object> res = new Response<>();
+        Response<ResponseApi> res = new Response<>();
         res.setOk(Boolean.TRUE);
         res.setData(comicBusiness.getColaborators());
         res.setSuperheroe(superheroe);
